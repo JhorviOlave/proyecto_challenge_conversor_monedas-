@@ -49,11 +49,17 @@ public class Pricipal {
                         String codigoA = sc.next();
                         System.out.print("Monto : "+codigoDe);
                         double monto = sc.nextDouble();
-                        nuv.agragarRegistro(com.convertirMoneda(codigoDe, codigoA, monto));
+                     Aplicacion.agregarRegistro(com.convertirMoneda(codigoDe, codigoA, monto));
                         
                     break;
                  case 3:
-                     nuv.mostrarLista();
+                     if(Aplicacion.tieneLista()){
+                         Aplicacion.mostrarLista();
+                         break;
+                     }
+                     System.out.println("****************************************************************************************************");
+                     System.out.println("No tienes conversiones realizadas");
+                     System.out.println("****************************************************************************************************");
                      break;
                  case 4:
                      System.out.println(" Gracias por usar nuestro servicio");
