@@ -10,7 +10,7 @@ public class Pricipal {
     public static void main(String[] args) throws Exception {
               
         
-        Aplicacion nuv = new Aplicacion();
+
         Convertidor com = new Convertidor();
         Scanner sc = new Scanner(System.in);
         int opcion;
