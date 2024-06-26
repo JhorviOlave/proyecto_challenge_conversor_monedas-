@@ -1,33 +1,26 @@
 
 package convertidormonedas;
 
-import java.util.ArrayList;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-
-public class Aplicacion {
+public class ApiConection {
     
-    private ArrayList<Convertidor> listaConverticiones;
-    
+    private HttpClient httpClient;
 
-    public Aplicacion() {
-        this.listaConverticiones = new ArrayList<>();
+    public ApiConection() {
+        this.httpClient = HttpClient.newHttpClient();
     }
     
-    public void agragarRegistro(Convertidor registro){
-        if (registro.getCodigoBase() != null && registro.getCodigoDestino()!= null) {
-            listaConverticiones.add(registro);
-        }
-    }
+    public String getApiResponse(String url) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        String apiResponse = response.body();
+        return apiResponse;
     
-    public void mostrarLista(){
-        for (Convertidor listaConverticione : listaConverticiones) {
-            System.out.println(" Codigo Base: " + listaConverticione.getCodigoBase() + " |\tCodigo Destino "+listaConverticione.getCodigoDestino() + "\t Cantidad " + listaConverticione.getCantidadConvetir() + " |\tValor final "+ listaConverticione.getCantidadConvetida());
-            }        
-        }
-
-    @Override
-    public String toString() {
-        return "Aplicacion{" + ", listaConverticiones=" + listaConverticiones + '}';
     }
-    
 }
